@@ -40,6 +40,7 @@ class Interpreter():
 		if words[0] == 'shutdown' or words[0] == 'q' or words[0] == 'exit' or words[0] == 'quit':
                     self.terminal.brain.say("Goodbye")
                     self.terminal.log("Exiting Omni")
+                    self.terminal.brain.shutdown()
                     sys.exit(0)
 		elif words[0] == 'clear':
 			if words[1] == 'logs':
@@ -65,6 +66,13 @@ class Interpreter():
                             expr += " down."
                         self.terminal.brain.phrase_queue(expr,0)
                         self.terminal.stdout(expr)
+
+                elif words[0] == 'drive':
+                    d = words[1]
+                    if d != 'stop':
+                        self.terminal.brain.drive(d)
+                    else:
+                        self.terminal.brain.stop_moving()
 
 		else:
 			self.terminal.stdout(clean_line)

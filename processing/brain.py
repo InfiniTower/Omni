@@ -4,6 +4,7 @@ import voice.speech
 import personality.character
 import timer.timer
 import terminal.terminal
+import motor.motor
 
 class Brain:
     def __init__(self):
@@ -14,6 +15,7 @@ class Brain:
         self.char = personality.character.Personality()
         self.time = timer.timer.TimeModule()
         self.term = terminal.terminal.TerminalInterface(self)
+        self.motor = motor.motor.MotorController()
         self.term.log("Beginning Omni")
 
         self.update_module_status()
@@ -36,6 +38,15 @@ class Brain:
 
         if self.modules["term"]:
             self.term.update()
+
+    def drive(self, d):
+        self.motor.drive(d)
+
+    def stop_moving(self):
+        self.motor.stop()
+
+    def shutdown(self):
+        self.motor.cleanup()
 
     def say(self, text):
         if self.modules['voice']:
