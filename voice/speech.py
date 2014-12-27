@@ -40,5 +40,7 @@ class SpeechModule:
                 self.say(msg)
 
 
+    def connected(self):
+        return True
 
 

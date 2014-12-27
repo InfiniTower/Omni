@@ -55,5 +55,16 @@ class Interpreter():
                 elif words[0] == 'remember':
                     self.terminal.brain.say("What would you like me to remember?")
 
+                elif words[0] == 'status':
+                    status = self.terminal.brain.get_module_status()
+                    for k in status:
+                        expr = "Module " + k + "is "
+                        if status[k]:
+                            expr += " up."
+                        else:
+                            expr += " down."
+
+                        self.terminal.brain.phrase_queue(expr,0)
+
 		else:
 			self.terminal.stdout(clean_line)

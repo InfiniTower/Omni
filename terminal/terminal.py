@@ -99,6 +99,10 @@ class TerminalInterface():
 			self.stdout(messArray[1])
 			self.print_arrow()
 
+        def connected(self):
+            if self.interpreter:
+                return True
+            return False
 
 
 
