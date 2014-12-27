@@ -3,6 +3,7 @@ import datetime
 class Personality:
     def __init__(self):
         self.properties = {"name": "Omni",
+                           "mirror_vision": False,
                            "birthday": datetime.datetime.now(),
                            "announce_hour": True,
                            "humor": 5}

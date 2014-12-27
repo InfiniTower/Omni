@@ -28,7 +28,8 @@ class Brain:
     def process(self):
         self.update_module_status()
         if self.modules["vision"]:
-            self.vis.display()
+            if self.char.get_property("mirror_vision"):
+                self.vis.display()
 
         if self.modules["voice"]:
             self.voice.update()
