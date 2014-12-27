@@ -25,9 +25,14 @@ class Brain:
         self.voice.add_message("Hello",0)
 
     def process(self):
-        self.vis.display()
-        self.voice.update()
-        self.term.update()
+        if self.modules["vision"]:
+            self.vis.display()
+
+        if self.modules["voice"]:
+            self.voice.update()
+
+        if self.modules["term"]:
+            self.term.update()
 
     def say(self, text):
         self.voice.say(text)
