@@ -37,7 +37,7 @@ class Interpreter():
 		clean_line = self.cleanInput(line)
 		words = clean_line.rsplit(' ')
 		
-		if words[0] == 'shutdown' or words[0] == 'q':
+		if words[0] == 'shutdown' or words[0] == 'q' or words[0] == 'exit' or words[0] == 'quit':
                     self.terminal.brain.say("Goodbye")
                     self.terminal.log("Exiting Omni")
                     sys.exit(0)
@@ -63,8 +63,8 @@ class Interpreter():
                             expr += " up."
                         else:
                             expr += " down."
-
                         self.terminal.brain.phrase_queue(expr,0)
+                        self.terminal.stdout(expr)
 
 		else:
 			self.terminal.stdout(clean_line)
