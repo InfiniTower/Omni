@@ -16,6 +16,7 @@ class Brain:
         self.term = terminal.terminal.TerminalInterface(self)
         self.term.log("Beginning Omni")
 
+        self.update_module_status()
         self.modules = {"audio" : False,
                         "vision" : False,
                         "voice" : False,
@@ -25,6 +26,7 @@ class Brain:
         self.voice.add_message("Hello",0)
 
     def process(self):
+        self.update_module_status()
         if self.modules["vision"]:
             self.vis.display()
 
@@ -35,10 +37,12 @@ class Brain:
             self.term.update()
 
     def say(self, text):
-        self.voice.say(text)
+        if self.modules['voice']:
+            self.voice.say(text)
 
     def phrase_queue(self, text, pri):
-        self.voice.add_message(text, pri)
+        if self.modules['voice']:
+            self.voice.add_message(text, pri)
 
     def update_module_status(self):
         self.modules = {"audio" : False,
