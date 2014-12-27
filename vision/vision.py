@@ -4,15 +4,21 @@ class VisionModule:
     def __init__(self):
         self.dev = 0
         self.cap = cv2.VideoCapture(self.dev)
+        self.ret = 0
+        self.frame = 0
+
+    def blink(self):
+        self.ret, self.frame = self.cap.read()
 
     def display(self):
-        ret,frame = self.cap.read()
-        if(ret):
-            cv2.imshow('mirror',frame)
+        self.blink()
+        if(self.ret):
+            cv2.imshow('mirror',self.frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             pass
     
     def connected(self):
-        if self.cap:
+        self.blink()
+        if self.ret:
             return True
         return False
