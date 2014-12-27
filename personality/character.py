@@ -1,6 +1,11 @@
+import datetime
+
 class Personality:
     def __init__(self):
-        self.properties = {"name": "Omni"}
+        self.properties = {"name": "Omni",
+                           "birthday": datetime.datetime.now(),
+                           "announce_hour": True,
+                           "humor": 5}
 
     def get_property(self, prop):
         return self.properties[prop]
