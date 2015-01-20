@@ -4,14 +4,11 @@ import voice.speech
 import personality.character
 import timer.timer
 import terminal.terminal
-<<<<<<< HEAD
 import networking.web as web
 import var.settings as var 
 
 import sys
-=======
 import motor.motor
->>>>>>> refs/remotes/origin/master
 
 class Brain:
     def __init__(self):
@@ -21,13 +18,10 @@ class Brain:
         self.char = personality.character.Personality()
         self.time = timer.timer.TimeModule()
         self.term = terminal.terminal.TerminalInterface(self)
-<<<<<<< HEAD
         self.web = web.WebConnector()
         
         self.char.set_property('version',var.Settings['version'])
-=======
         self.motor = motor.motor.MotorController()
->>>>>>> refs/remotes/origin/master
         self.term.log("Beginning Omni")
 
         self.update_module_status()

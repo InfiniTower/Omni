@@ -36,7 +36,8 @@ class Interpreter():
                             'hello': self.convo,
                             'remember': self.memo,
                             'about': self.about,
-                            'read': self.read}
+                            'read': self.read,
+                            'drive': self.drive}
 		
 	def cleanInput(self,inLine):
 		inLine = inLine.rstrip()
@@ -45,7 +46,6 @@ class Interpreter():
 	def Interpret(self,line):
 		clean_line = self.cleanInput(line)
 		words = clean_line.rsplit(' ')
-<<<<<<< HEAD
                 try:
                     f = self.actions[words[0]]
                 except KeyError:
@@ -96,9 +96,12 @@ class Interpreter():
                     for s in sentc:
                         self.terminal.brain.phrase_queue(s,0)
                 
-
-
-
+        def drive(self, words):
+            d = words[1]
+            if d == 'stop':
+                self.terminal.brain.stop_moving()
+            else:
+                self.terminal.brain.drive(d)
 
         def about(self, words):
             if len(words) == 1:
@@ -117,53 +120,3 @@ class Interpreter():
                         msg += 'down'
                     self.terminal.brain.phrase_queue(msg,0)
 
-
-
-
-
-
-
-
-
-=======
-		
-		if words[0] == 'shutdown' or words[0] == 'q' or words[0] == 'exit' or words[0] == 'quit':
-                    self.terminal.brain.say("Goodbye")
-                    self.terminal.log("Exiting Omni")
-                    self.terminal.brain.shutdown()
-                    sys.exit(0)
-		elif words[0] == 'clear':
-			if words[1] == 'logs':
-                            self.terminal.brain.say("Clearing Logs")
-                            self.terminal.clear_log()
-		elif words[0] == 'hello':
-                            self.terminal.brain.say("What would you like to talk about?")
-		elif words[0] == 'record':
-			if words[1] == 'audio':
-                            self.terminal.brain.say("Recording Audio")
-			elif words[1] == 'video':
-                            self.terminal.brain.say("Recording Video")
-                elif words[0] == 'remember':
-                    self.terminal.brain.say("What would you like me to remember?")
-
-                elif words[0] == 'status':
-                    status = self.terminal.brain.get_module_status()
-                    for k in status:
-                        expr = "Module " + k + "is "
-                        if status[k]:
-                            expr += " up."
-                        else:
-                            expr += " down."
-                        self.terminal.brain.phrase_queue(expr,0)
-                        self.terminal.stdout(expr)
-
-                elif words[0] == 'drive':
-                    d = words[1]
-                    if d != 'stop':
-                        self.terminal.brain.drive(d)
-                    else:
-                        self.terminal.brain.stop_moving()
-
-		else:
-			self.terminal.stdout(clean_line)
->>>>>>> refs/remotes/origin/master
