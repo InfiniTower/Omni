@@ -4,16 +4,22 @@ import voice.speech
 import personality.character
 import timer.timer
 import terminal.terminal
+import networking.web as web
+import var.settings as var 
+
+import sys
 
 class Brain:
     def __init__(self):
-        # Brain Components
         self.hear = hearing.hearing.HearingModule()
         self.vis = vision.vision.VisionModule()
         self.voice = voice.speech.SpeechModule()
         self.char = personality.character.Personality()
         self.time = timer.timer.TimeModule()
         self.term = terminal.terminal.TerminalInterface(self)
+        self.web = web.WebConnector()
+        
+        self.char.set_property('version',var.Settings['version'])
         self.term.log("Beginning Omni")
 
         self.update_module_status()
@@ -67,4 +73,6 @@ class Brain:
         self.update_module_status()
         return self.modules
 
-        
+    def quit(self):
+        self.voice.disconnect()
+        sys.exit(0)

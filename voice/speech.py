@@ -12,7 +12,7 @@ class SpeechModule:
                          4: []}     # System Critical Messages
 
     def say(self, text):
-        Popen(["./" + self.path, '"' + text + '"'])
+        self.goog_speak = Popen(["./" + self.path, '"' + text + '"'])
 
     def add_message(self, text, priority):
         self.messages[priority].append(text)
@@ -25,7 +25,6 @@ class SpeechModule:
             return False
         else:
             return True
-
 
     def update(self):
         if self.check_speaking():
@@ -42,5 +41,8 @@ class SpeechModule:
 
     def connected(self):
         return True
+
+    def disconnect(self):
+        self.goog_speak.kill()
 
 

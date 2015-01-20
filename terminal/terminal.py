@@ -37,6 +37,7 @@ logpath = 'data/logs/omni_terminal.log'
 class TerminalInterface():
 	def __init__(self,brain):
 		self.timeout = 0.1 # seconds
+                self.history = [""]
 		self.last_work_time = time.time()
 		self.brain = brain
 		self.print_arrow()
